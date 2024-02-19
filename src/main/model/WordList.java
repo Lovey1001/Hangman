@@ -1,35 +1,38 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Random;
 
 public class WordList {
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    public void addWordToList(String word) {
-        // TODO
+    private Set<String> words = new HashSet<>();
+    private Random random = new Random();
+
+    // REQUIRES: words cannot be repeated in the list.
+    // EFFECTS: adds the word to the list.
+    public boolean addWordToList(String word) {
+        return words.add(word.toLowerCase());
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    public boolean isEmptyList() {
-        return true;
+    // EFFECTS: checks if the word is already in the list
+    public boolean containsWordInList(String word) {
+        return words.contains(word.toLowerCase());
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: selects a random word from the list
     public String getRandomWordSelected() {
-        return "";
+        if (words.isEmpty()) {
+            return null;
+        }
+        List<String> wordList = new ArrayList<>(words);
+        return wordList.get(random.nextInt(wordList.size()));
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    public Set<String> getWordList() {
-        return null;
+    // EFFECTS: returns a list of inputted words
+    public List<String> getWordList() {
+        return new ArrayList<>(words);
     }
 }
