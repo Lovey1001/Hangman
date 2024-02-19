@@ -75,7 +75,16 @@ public class HangmanGame {
 
             displayEndGame(gameState.isGameOver() && gameState.wordGuessed(), wordToGuess);
             wordList.addWordToList(wordToGuess);
+
+            keepGoing = playNextRound();
         }
+    }
+
+    // EFFECTS: asks player if they want to continue playing or quit
+    public boolean playNextRound() {
+        System.out.println("\nDo you want to continue playing? (yes/no)");
+        String input = scanner.nextLine().trim().toLowerCase();
+        return input.equals("yes");
     }
 
     // EFFECTS: displays the current game state after word is selected at random
@@ -113,9 +122,9 @@ public class HangmanGame {
     // EFFECTS: displays the outcome result of winning the game
     public void displayEndGame(boolean win, String word) {
         if (win) {
-            System.out.println("Congratulations! You've guessed the word: " + word);
+            System.out.println("\nCongratulations! You've guessed the word: " + word);
         } else {
-            System.out.println("Game over! The correct word was: " + word);
+            System.out.println("\nGame over! The correct word was: " + word);
         }
     }
 
