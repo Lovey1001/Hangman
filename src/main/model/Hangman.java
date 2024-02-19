@@ -18,7 +18,6 @@ public class Hangman {
     // EFFECTS: gives a word that will need to be guessed
     public Hangman(String word) {
         this.word = word;
-        this.guessedLetters = null;
         this.livesLeft = 6;
     }
 
