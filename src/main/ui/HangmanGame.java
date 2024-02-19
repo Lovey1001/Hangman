@@ -51,7 +51,7 @@ public class HangmanGame {
         }
     }
 
-    // EFFECTS: processes user input
+    // EFFECTS: processes user input and runs the application
     public void startGame() {
         boolean keepGoing = true;
 

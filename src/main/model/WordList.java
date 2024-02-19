@@ -8,8 +8,13 @@ import java.util.Random;
 
 public class WordList {
 
-    private Set<String> words = new HashSet<>();
+    private Set<String> words;
     private Random random = new Random();
+
+    // EFFECTS: creates instance of this class with empty list.
+    public WordList() {
+        words = new HashSet<>();
+    }
 
     // REQUIRES: words cannot be repeated in the list.
     // EFFECTS: adds the word to the list.
