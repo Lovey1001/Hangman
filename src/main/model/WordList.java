@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.Random;
 
+// Represents a list of all the words that can be added to a list
 public class WordList {
 
-    private Set<String> words;
-    private Random random = new Random();
+    private final Set<String> words;
+    private final Random random = new Random();
 
     // EFFECTS: creates instance of this class with empty list.
     public WordList() {

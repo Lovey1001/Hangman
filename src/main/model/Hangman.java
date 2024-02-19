@@ -1,16 +1,16 @@
 package model;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 // Represents a traditional hangman game, where a user can input a word into an empty list of words
 // and have to guess the random word picked from the list, letter by letter. You can look at the list of words
 // guessed as well as see the letters you already typed.
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 public class Hangman {
 
-    private String word;
-    private Set<Character> guessedLetters = new LinkedHashSet<>();
+    private final String word;
+    private final Set<Character> guessedLetters = new LinkedHashSet<>();
     private int livesLeft = 6;
 
     // REQUIRES: string > 0 letters;
@@ -18,7 +18,6 @@ public class Hangman {
     // EFFECTS: gives a word that will need to be guessed
     public Hangman(String word) {
         this.word = word;
-        this.livesLeft = 6;
     }
 
     // EFFECTS: checks if the next letter is the letter in the word, adds the letter to list of guessed letters
