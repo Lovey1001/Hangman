@@ -20,3 +20,7 @@ continue where they left off. They can also view the list of previous words gues
 - As a user, I want to add the random word to a list of used words so it is not repeated.
 - As a user, I want to be able to view the list of used words or used letters. 
 - As a user, I want to be able to see a tally of wins and losses for words guessed.
+
+# *Data Persistence* 
+- As a user, at the end of the current game, I want to be reminded to save my game to file and have option to do it or not.
+- As a user, I want the option to reload my current progress from the previous game from file when starting my game.
