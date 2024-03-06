@@ -6,7 +6,6 @@ import java.util.Set;
 // Represents a traditional hangman game, where a user can input a word into an empty list of words
 // and have to guess the random word picked from the list, letter by letter. You can look at the list of words
 // guessed as well as see the letters you already typed.
-
 public class Hangman {
 
     private final String word;
