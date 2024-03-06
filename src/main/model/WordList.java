@@ -6,9 +6,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.Random;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
-// Represents a list of all the words that can be added to a list
-public class WordList {
+// Citation: Got some help from JsonSerializationDemo file
+
+// Represents a wordlist having a collection of words inputted
+public class WordList implements Writable {
 
     private final Set<String> words;
     private final Random random = new Random();
@@ -41,5 +46,17 @@ public class WordList {
     // EFFECTS: returns a list of inputted words
     public List<String> getWordList() {
         return new ArrayList<>(words);
+    }
+
+    @Override
+    // EFFECTS: converts Wordlist object to JSON object
+    public JSONObject toJson() {
+        JSONArray wordsArray = new JSONArray();
+        for (String word : words) {
+            wordsArray.put(word);
+        }
+        JSONObject json = new JSONObject();
+        json.put("Words Added", wordsArray);
+        return json;
     }
 }

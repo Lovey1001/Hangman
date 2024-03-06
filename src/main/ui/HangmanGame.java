@@ -5,16 +5,30 @@ import model.WordList;
 import java.util.List;
 import java.util.Scanner;
 
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 //  Hangman Game application in Console.
 // Used the TellerApp application for some code functions.
 public class HangmanGame {
 
+    private static final String JSON_STORE = "./data/hangman.json";
     private final Scanner scanner = new Scanner(System.in);
-    private final WordList wordList;
+    private WordList wordList;
+    private Hangman hangmanGame;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the hangman game
-    public HangmanGame(WordList wordList) {
+    public HangmanGame(WordList wordList) throws FileNotFoundException {
         this.wordList = wordList;
+        hangmanGame = new Hangman("");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        startGame();
     }
 
     // REQUIRES: no numbers or special characters allowed
@@ -53,11 +67,14 @@ public class HangmanGame {
 
     // EFFECTS: processes user input and runs the application
     public void startGame() {
+
         boolean keepGoing = true;
 
-        addWordsMenu();
-
         while (keepGoing) {
+
+            loadCurrentGame();
+
+            addWordsMenu();
 
             String wordToGuess = wordList.getRandomWordSelected();
             Hangman gameState = new Hangman(wordToGuess);
@@ -77,7 +94,11 @@ public class HangmanGame {
             wordList.addWordToList(wordToGuess);
 
             keepGoing = playNextRound();
+
+            saveCurrentGame();
         }
+
+        System.out.println("GoodBye!");
     }
 
     // EFFECTS: asks player if they want to continue playing or quit
@@ -85,6 +106,24 @@ public class HangmanGame {
         System.out.println("\nDo you want to continue playing? (yes/no)");
         String input = scanner.nextLine().trim().toLowerCase();
         return input.equals("yes");
+    }
+
+    // EFFECTS: asks player if they want to save the game
+    public void saveCurrentGame() {
+        System.out.println("Do you want to save the game state? (yes/no)");
+        String input = scanner.nextLine().trim().toLowerCase();
+        if ("yes".equals(input)) {
+            saveGame();
+        }
+    }
+
+    // EFFECTS: asks player if they want to save the game
+    public void loadCurrentGame() {
+        System.out.println("Do you want to load the saved game? (yes/no)");
+        String input = scanner.nextLine().trim().toLowerCase();
+        if ("yes".equals(input)) {
+            loadGame();
+        }
     }
 
     // EFFECTS: displays the current game state after word is selected at random
@@ -128,4 +167,27 @@ public class HangmanGame {
         }
     }
 
+    // EFFECTS: saves the current game state to file
+    private void saveGame() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(hangmanGame, wordList);
+            jsonWriter.close();
+            System.out.println("Saved game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads the game state from file
+    private void loadGame() {
+        try {
+            hangmanGame = jsonReader.read();
+            wordList = jsonReader.readWordList();
+            System.out.println("Loaded game from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }

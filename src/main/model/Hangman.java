@@ -3,10 +3,16 @@ package model;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+// Citation: Got some help from JsonSerializationDemo file
+
 // Represents a traditional hangman game, where a user can input a word into an empty list of words
 // and have to guess the random word picked from the list, letter by letter. You can look at the list of words
 // guessed as well as see the letters you already typed.
-public class Hangman {
+public class Hangman implements Writable {
 
     private final String word;
     private final Set<Character> guessedLetters = new LinkedHashSet<>();
@@ -68,11 +74,27 @@ public class Hangman {
     // MODIFIES: this
     // EFFECTS: checks if game is over or not
     public boolean isGameOver() {
-        return livesLeft < 0 || wordGuessed();
+        return livesLeft <= 0 || wordGuessed();
     }
 
     // EFFECTS: returns set of letters inputted
     public Set<Character> getGuessedLetters() {
         return guessedLetters;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the number of lives left to the given number
+    public void setLivesLeft(int lives) {
+        this.livesLeft = lives;
+    }
+
+    @Override
+    // EFFECTS: converts Hangman object to JSON object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("word", word);
+        json.put("livesLeft", livesLeft);
+        json.put("guessedLetters", guessedLetters);
+        return json;
     }
 }
