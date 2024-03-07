@@ -14,15 +14,17 @@ import persistence.Writable;
 // guessed as well as see the letters you already typed.
 public class Hangman implements Writable {
 
-    private final String word;
-    private final Set<Character> guessedLetters = new LinkedHashSet<>();
-    private int livesLeft = 6;
+    private String word;
+    private Set<Character> guessedLetters;
+    private int livesLeft;
 
     // REQUIRES: string > 0 letters;
     // MODIFIES: this
     // EFFECTS: gives a word that will need to be guessed
     public Hangman(String word) {
         this.word = word;
+        this.livesLeft = 6;
+        this.guessedLetters = new LinkedHashSet<>();
     }
 
     // EFFECTS: checks if the next letter is the letter in the word, adds the letter to list of guessed letters
@@ -35,6 +37,7 @@ public class Hangman implements Writable {
         if (word.indexOf(letter) >= 0) {
             return true;
         } else {
+
             livesLeft--;
             return false;
         }
@@ -53,8 +56,8 @@ public class Hangman implements Writable {
     // MODIFIES: this
     // EFFECTS: puts the letter into the word if guessed right, otherwise puts "_"
     public String getWordWithGuesses() {
-
         StringBuilder newWord = new StringBuilder();
+
         for (char letter : word.toCharArray()) {
             if (guessedLetters.contains(letter)) {
                 newWord.append(letter);
@@ -67,7 +70,7 @@ public class Hangman implements Writable {
     }
 
     // EFFECTS: shows how many attempts are left
-    public int numberOfLivesLeft() {
+    public int getLivesLeft() {
         return livesLeft;
     }
 
@@ -82,19 +85,15 @@ public class Hangman implements Writable {
         return guessedLetters;
     }
 
-    // MODIFIES: this
-    // EFFECTS: sets the number of lives left to the given number
-    public void setLivesLeft(int lives) {
-        this.livesLeft = lives;
+    public String getWord() {
+        return word;
     }
 
     @Override
     // EFFECTS: converts Hangman object to JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("word", word);
-        json.put("livesLeft", livesLeft);
-        json.put("guessedLetters", guessedLetters);
+        json.put("name", word);
         return json;
     }
 }

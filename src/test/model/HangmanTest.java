@@ -15,14 +15,15 @@ class HangmanTest {
 
     @Test
     public void testConstructor() {
-        assertEquals(6, game1.numberOfLivesLeft());
+        assertEquals("Computer", game1.getWord());
+        assertEquals(6, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().isEmpty());
     }
 
     @Test
     public void guessNextLetterCorrectTest() {
         game1.guessNextLetter('p');
-        assertEquals(6, game1.numberOfLivesLeft());
+        assertEquals(6, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('p'));
         assertEquals(1, game1.getGuessedLetters().size());
     }
@@ -30,7 +31,7 @@ class HangmanTest {
     @Test
     public void guessNextLetterIncorrectTest() {
         game1.guessNextLetter('q');
-        assertEquals(5, game1.numberOfLivesLeft());
+        assertEquals(5, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('q'));
         assertEquals(1, game1.getGuessedLetters().size());
     }
@@ -38,12 +39,12 @@ class HangmanTest {
     @Test
     public void guessNext2LettersCorrectTest() {
         game1.guessNextLetter('p');
-        assertEquals(6, game1.numberOfLivesLeft());
+        assertEquals(6, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('p'));
         assertEquals(1, game1.getGuessedLetters().size());
 
         game1.guessNextLetter('o');
-        assertEquals(6, game1.numberOfLivesLeft());
+        assertEquals(6, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('o'));
         assertEquals(2, game1.getGuessedLetters().size());
     }
@@ -51,12 +52,12 @@ class HangmanTest {
     @Test
     public void guessNext2LettersIncorrectTest() {
         game1.guessNextLetter('q');
-        assertEquals(5, game1.numberOfLivesLeft());
+        assertEquals(5, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('q'));
         assertEquals(1, game1.getGuessedLetters().size());
 
         game1.guessNextLetter('z');
-        assertEquals(4, game1.numberOfLivesLeft());
+        assertEquals(4, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('z'));
         assertEquals(2, game1.getGuessedLetters().size());
     }
@@ -64,12 +65,12 @@ class HangmanTest {
     @Test
     public void guessNextLetterRepeatedTest() {
         game1.guessNextLetter('C');
-        assertEquals(6, game1.numberOfLivesLeft());
+        assertEquals(6, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('C'));
         assertEquals(1, game1.getGuessedLetters().size());
 
         assertTrue(game1.guessNextLetter('C'));
-        assertEquals(6, game1.numberOfLivesLeft());
+        assertEquals(6, game1.getLivesLeft());
         assertTrue(game1.getGuessedLetters().contains('C'));
         assertEquals(1, game1.getGuessedLetters().size());
     }
@@ -158,7 +159,7 @@ class HangmanTest {
         game1.guessNextLetter('r');
         game1.guessNextLetter('l');
         assertFalse(game1.isGameOver());
-        assertEquals(3,game1.numberOfLivesLeft());
+        assertEquals(3,game1.getLivesLeft());
         assertEquals(6,game1.getGuessedLetters().size());
         assertEquals("C _ _ p _ _ _ r", game1.getWordWithGuesses());
     }

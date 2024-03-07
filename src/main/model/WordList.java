@@ -49,14 +49,13 @@ public class WordList implements Writable {
     }
 
     @Override
-    // EFFECTS: converts Wordlist object to JSON object
     public JSONObject toJson() {
         JSONArray wordsArray = new JSONArray();
         for (String word : words) {
             wordsArray.put(word);
         }
         JSONObject json = new JSONObject();
-        json.put("Words Added", wordsArray);
+        json.put("wordsAdded", wordsArray);
         return json;
     }
 }

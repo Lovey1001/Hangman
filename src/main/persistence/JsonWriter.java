@@ -29,10 +29,14 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: writes JSON representation of Hangman and WordList to file
     public void write(Hangman hangman, WordList wordList) {
-        JSONObject json = hangman.toJson();
-        JSONObject json2 = wordList.toJson();
-        saveToFile(json.toString(TAB));
-        saveToFile(json2.toString(TAB));
+        JSONObject hangmanJson = hangman.toJson();
+        JSONObject wordListJson = wordList.toJson();
+
+        for (String key : wordListJson.keySet()) {
+            hangmanJson.put(key, wordListJson.get(key));
+        }
+
+        saveToFile(hangmanJson.toString(TAB));
     }
 
     // MODIFIES: this

@@ -25,7 +25,7 @@ public class HangmanGame {
     // EFFECTS: runs the hangman game
     public HangmanGame(WordList wordList) throws FileNotFoundException {
         this.wordList = wordList;
-        hangmanGame = new Hangman("");
+        this.hangmanGame = new Hangman("Hangman");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         startGame();
@@ -91,6 +91,7 @@ public class HangmanGame {
             }
 
             displayEndGame(gameState.isGameOver() && gameState.wordGuessed(), wordToGuess);
+
             wordList.addWordToList(wordToGuess);
 
             keepGoing = playNextRound();
@@ -129,7 +130,7 @@ public class HangmanGame {
     // EFFECTS: displays the current game state after word is selected at random
     public void displayHangmanGame(Hangman hangman) {
         System.out.println("\nCurrent word: " + hangman.getWordWithGuesses());
-        System.out.println("Attempts left: " + hangman.numberOfLivesLeft());
+        System.out.println("Attempts left: " + hangman.getLivesLeft());
         System.out.println("Guessed letters: " + hangman.getGuessedLetters());
     }
 

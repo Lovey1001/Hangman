@@ -17,7 +17,7 @@ import org.json.*;
 // Represents a reader that reads hangmanGame from JSON data stored in file
 public class JsonReader {
 
-    private String source;
+    private final String source;
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
@@ -53,27 +53,14 @@ public class JsonReader {
 
     // EFFECTS: Parses Hangman game state from JSON object and returns it
     private Hangman parseHangman(JSONObject jsonObject) {
-        String word = jsonObject.getString("word");
-        int livesLeft = jsonObject.getInt("livesLeft");
+        String word = jsonObject.getString("name");
         Hangman hangman = new Hangman(word);
-        hangman.setLivesLeft(livesLeft);
-        addGuessedLetters(hangman, jsonObject);
         return hangman;
-    }
-
-    // MODIFIES: hangman
-    // EFFECTS: parses guessed letters from JSON object and adds them to Hangman
-    private void addGuessedLetters(Hangman hangman, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("guessedLetters");
-        for (Object json : jsonArray) {
-            String letter = (String) json;
-            hangman.guessNextLetter(letter.charAt(0));
-        }
     }
 
     // EFFECTS: parses words from JSON object and returns a WordList
     private WordList parseWordList(JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("Words Added");
+        JSONArray jsonArray = jsonObject.getJSONArray("wordsAdded");
         WordList wordList = new WordList();
         for (Object json : jsonArray) {
             String word = (String) json;
