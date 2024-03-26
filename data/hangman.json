@@ -1,4 +1,7 @@
 {
-    "wordsAdded": ["yekk"],
+    "wordsAdded": [
+        "tony",
+        "hello"
+    ],
     "name": "Hangman"
 }

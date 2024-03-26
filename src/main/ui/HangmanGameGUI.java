@@ -4,16 +4,23 @@ import model.Hangman;
 import model.WordList;
 import java.util.List;
 import java.util.Scanner;
-
 import persistence.JsonReader;
 import persistence.JsonWriter;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+
 //  Hangman Game application in Console.
 // Used the TellerApp application for some code functions.
-public class HangmanGame {
+public class HangmanGameGUI {
 
     private static final String JSON_STORE = "./data/hangman.json";
     private final Scanner scanner = new Scanner(System.in);
@@ -22,8 +29,24 @@ public class HangmanGame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    private JFrame frame;
+    private JTextField wordTextField;
+    private JTextArea wordListArea;
+    private JButton addButton;
+    private JButton viewButton;
+    private JButton saveButton;
+    private JButton loadButton;
+    private JButton guessButton;
+    private JTextField guessTextField;
+    private JLabel currentWordLabel;
+    private JLabel attemptsLabel;
+    private JLabel guessedLettersLabel;
+    private JLabel wordToGuessLabel;
+    private JLabel attemptsLeftLabel;
+    private JButton startGameButton;
+
     // EFFECTS: runs the hangman game
-    public HangmanGame(WordList wordList) throws FileNotFoundException {
+    public HangmanGameGUI(WordList wordList) throws FileNotFoundException {
         this.wordList = wordList;
         this.hangmanGame = new Hangman("Hangman");
         jsonWriter = new JsonWriter(JSON_STORE);
