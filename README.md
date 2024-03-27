@@ -24,3 +24,13 @@ continue where they left off. They can also view the list of previous words gues
 # *Data Persistence* 
 - As a user, at the end of the current game, I want to be reminded to save my game to file and have option to do it or not.
 - As a user, I want the option to reload my current progress from the previous game from file when starting my game.
+
+# *Instructions for Grader*
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by
+  typing a word in the box and clicking the "Add Word" button.
+- You can generate the second required action of viewing the list of X's in Y by clicking the "View Words" button.
+- You can locate my visual component by adding a word and clicking the "Add Word" button which will prompt
+  an image showing that word is added with a cartoon with a thumbs up!
+- You can save the state of my application by clicking the "Save Game" button.
+- You can reload the state of my application by clicking the "Load Game" button.

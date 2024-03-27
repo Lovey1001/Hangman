@@ -78,7 +78,7 @@ public class HangmanGameGUI extends JFrame {
     // EFFECTS: gameplay panel used for guessing letters
     private void setupGameplayComponents() {
         JPanel gameplayPanel = new JPanel(new GridLayout(0, 1, 5, 5));
-        gameplayPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+        gameplayPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         startGameButton = new JButton("Start New Game");
         startGameButton.addActionListener(new StartGameListener());
