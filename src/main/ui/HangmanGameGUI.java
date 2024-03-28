@@ -247,6 +247,8 @@ public class HangmanGameGUI extends JFrame {
                 wordsBuilder.append(word).append("\n");
             }
             wordListArea.setText(wordsBuilder.toString());
+            Timer timer = new Timer(3000, event -> wordListArea.setText(""));
+            timer.start();
         }
     }
 
