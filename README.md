@@ -30,7 +30,7 @@ continue where they left off. They can also view the list of previous words gues
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by
   typing a word in the box and clicking the "Add Word" button.
 - You can generate the second required action of viewing the list of X's in Y by clicking the "View Words" button.
-- You can locate my visual component by adding a word and clicking the "Add Word" button which will prompt
-  an image showing that word is added with a cartoon with a thumbs up!
+- You can locate my visual component when a player starts a new game by clicking "Start New Game" and guesses the 
+correct word. It will display an image with seperate text letting player know they won!
 - You can save the state of my application by clicking the "Save Game" button.
 - You can reload the state of my application by clicking the "Load Game" button.
