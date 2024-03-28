@@ -206,9 +206,14 @@ public class HangmanGameGUI extends JFrame {
 
                 if (hangmanGame.isGameOver()) {
                     setGameplayEnabled(false);
-                    String message = hangmanGame.wordGuessed() ? "Congratulations! You've guessed the word!" :
-                            "Game over! The correct word was: " + hangmanGame.getWord();
-                    JOptionPane.showMessageDialog(frame, message);
+                    ImageIcon image = new ImageIcon("./data/win.jpeg");
+                    if (hangmanGame.wordGuessed()) {
+                        JOptionPane.showMessageDialog(frame, "Congratulations! You've guessed the word!",
+                                "You Win!", JOptionPane.INFORMATION_MESSAGE, image);
+                    } else {
+                        String message = "Game over! The correct word was: " + hangmanGame.getWord();
+                        JOptionPane.showMessageDialog(frame, message);
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(frame, "Invalid guess. Please enter a single letter.");
