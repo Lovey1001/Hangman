@@ -34,3 +34,32 @@ continue where they left off. They can also view the list of previous words gues
 correct word. It will display an image with seperate text letting player know they won!
 - You can save the state of my application by clicking the "Save Game" button.
 - You can reload the state of my application by clicking the "Load Game" button.
+
+# *Phase 4: Task 2* 
+The GUI has been closed now.
+
+Fri Apr 05 16:09:06 PDT 2024 - Added word to list: Whatsup
+
+Fri Apr 05 16:09:07 PDT 2024 - Viewed words in the list.
+
+Fri Apr 05 16:09:12 PDT 2024 - Added word to list: CPSC
+
+Fri Apr 05 16:09:13 PDT 2024 - Viewed words in the list.
+
+Fri Apr 05 16:09:16 PDT 2024 - Saved game.
+
+Fri Apr 05 16:09:17 PDT 2024 - Started new game.
+
+Fri Apr 05 16:09:18 PDT 2024 - Started new game.
+
+Fri Apr 05 16:09:19 PDT 2024 - Started new game.
+
+Fri Apr 05 16:09:33 PDT 2024 - Added word to list: gameover
+
+Fri Apr 05 16:09:35 PDT 2024 - Viewed words in the list.
+
+Fri Apr 05 16:09:39 PDT 2024 - Saved game.
+
+Fri Apr 05 16:09:42 PDT 2024 - Loaded game.
+
+Events logged successfully. Thanks for playing!

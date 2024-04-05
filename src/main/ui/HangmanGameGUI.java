@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Hangman;
 import model.WordList;
 import persistence.JsonReader;
@@ -25,6 +27,8 @@ public class HangmanGameGUI extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    private EventLog eventLog = EventLog.getInstance();
+
     private JFrame frame;
     private JTextField wordTextField;
     private JTextArea wordListArea;
@@ -47,6 +51,19 @@ public class HangmanGameGUI extends JFrame {
         initializeComponents();
         initializeGame();
         startNewGame();
+        windowCloser();
+    }
+
+    // EFFECTS: Set up window closing listener to call handleClose() method
+    private void windowCloser() {
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                handleClose();
+                System.exit(0);
+            }
+        });
     }
 
     // EFFECTS: used to prepare the game field
@@ -192,6 +209,7 @@ public class HangmanGameGUI extends JFrame {
             hangmanGame = new Hangman(wordToGuess);
             updateGameDisplay();
             setGameplayEnabled(true);
+            eventLog.logEvent(new Event("Started new game."));
         }
     }
 
@@ -236,6 +254,7 @@ public class HangmanGameGUI extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(frame, "Please add an appropriate word.");
             }
+            eventLog.logEvent(new Event("Added word to list: " + word));
         }
     }
 
@@ -249,6 +268,7 @@ public class HangmanGameGUI extends JFrame {
             wordListArea.setText(wordsBuilder.toString());
             Timer timer = new Timer(3000, event -> wordListArea.setText(""));
             timer.start();
+            eventLog.logEvent(new Event("Viewed words in the list."));
         }
     }
 
@@ -260,6 +280,7 @@ public class HangmanGameGUI extends JFrame {
                 jsonWriter.write(hangmanGame, wordList);
                 jsonWriter.close();
                 JOptionPane.showMessageDialog(frame, "Game saved to " + JSON_STORE);
+                eventLog.logEvent(new Event("Saved game."));
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(frame, "Unable to save game: " + ex.getMessage());
             }
@@ -273,9 +294,19 @@ public class HangmanGameGUI extends JFrame {
                 hangmanGame = jsonReader.read();
                 wordList = jsonReader.readWordList();
                 JOptionPane.showMessageDialog(frame, "Game loaded from " + JSON_STORE);
+                eventLog.logEvent(new Event("Loaded game."));
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(frame, "Unable to load game: " + ex.getMessage());
             }
         }
+    }
+
+    // EFFECTS: this will print out the final logs made in the console once game is over
+    private void handleClose() {
+        System.out.println("The GUI has been closed now.");
+        for (Event event : eventLog) {
+            System.out.println(event.getDate() + " - " + event.getDescription());
+        }
+        System.out.println("Events logged successfully. Thanks for playing!");
     }
 }
