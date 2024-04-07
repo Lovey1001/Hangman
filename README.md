@@ -63,3 +63,14 @@ Fri Apr 05 16:09:39 PDT 2024 - Saved game.
 Fri Apr 05 16:09:42 PDT 2024 - Loaded game.
 
 Events logged successfully. Thanks for playing!
+
+# *Phase 4: Task 3* 
+
+**What refactoring can be done to improve the game?**
+
+For this project, there were quite a few adjustments that could have been made as revisions.
+Firstly, we could make it more scalable. Secondly, I want to implement the OpenAI API to get a user favorite
+user topic wordbank that can be generated. This way we don't have to think of words to type, they
+can be automatically generated. Thirdly, I could have added more graphics to make it more visual for the 
+user such as having the stick man for the game. This can be implemented in the game with the user guesses and 
+with every wrong guess, it will draw a component of a figure. 

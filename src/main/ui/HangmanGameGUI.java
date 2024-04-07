@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-//  Hangman Game application in GUI.
+// Hangman Game application in GUI.
 // Used the TellerApp application for some code functions.
 // Used the GUIToolsSolution for some code considerations
 public class HangmanGameGUI extends JFrame {
