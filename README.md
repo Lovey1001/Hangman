@@ -1,3 +1,7 @@
+#NOTE: This project was created for my CPSC 210 course. It is my first time creating a project from start to end. 
+
+========================================================================================================================================
+
 # Hangman Game!
 
 This is going to be a fun, interactive game for all ages.
